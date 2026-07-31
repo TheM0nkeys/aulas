@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.DTO.SomaResponse;
-import com.example.demo.DTO.SomaRequest;
-import com.example.demo.DTO.SubtracaoRequest;
-import com.example.demo.DTO.SubtracaoResponse;
+import com.example.demo.DTO.*;
 import com.example.demo.model.Calculos;
 import com.example.demo.service.CalculosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +31,17 @@ public class CalculosController {
         try{
             SubtracaoResponse subtracaoResponse = this.calculosService.subtracao(entrada);
             return new ResponseEntity<SubtracaoResponse>(subtracaoResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+        }
+    }
+
+    @PostMapping("media")
+    public ResponseEntity<MediaResponse> media (@RequestBody MediaRequest entrada)
+    {
+        try {
+            MediaResponse mediaResponse = this.calculosService.media(entrada);
+            return new ResponseEntity<MediaResponse>(mediaResponse, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
         }

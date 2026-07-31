@@ -1,11 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.DTO.SomaRequest;
-import com.example.demo.DTO.SomaResponse;
-import com.example.demo.DTO.SubtracaoRequest;
-import com.example.demo.DTO.SubtracaoResponse;
+import com.example.demo.DTO.*;
 import com.example.demo.model.Calculos;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,5 +33,27 @@ public class CalculosService {
 
         SubtracaoResponse subtracaoResponse = new SubtracaoResponse();
         subtracaoResponse.setSubtracao(calculos.getSubtracao());
+
+        return subtracaoResponse;
+    }
+
+    public MediaResponse media (MediaRequest entrada)
+    {
+        Double media = 0.0;
+        Integer contador = 0;
+        for(Double i : entrada.getLista())
+        {
+            media += i;
+            contador++;
+        }
+        media /= contador;
+
+        Calculos calculos = new Calculos();
+        calculos.setMedia(media);
+
+        MediaResponse mediaResponse = new MediaResponse();
+        mediaResponse.setMedia(calculos.getMedia());
+
+        return mediaResponse;
     }
 }
