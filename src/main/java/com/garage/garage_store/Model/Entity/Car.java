@@ -6,7 +6,7 @@ import lombok.*;
 import java.math.BigDecimal;
 
 
-//tostring
+
 @Entity
 @Table(name = "cars")//aqui sera colocado o as informacoes do carros
 @Builder
