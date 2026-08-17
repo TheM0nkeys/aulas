@@ -1,6 +1,13 @@
 package com.garage.garage_store.DTO;
 
+import java.math.BigDecimal;
+
 public record CarResponse(
-        String brand
+        Integer id,
+        String brand,
+        String model,
+        Integer year,
+        String licensePlate,
+        BigDecimal price
 ) {
 }
