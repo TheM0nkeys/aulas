@@ -18,8 +18,10 @@ public class CarController {
 
 
     @GetMapping("/get")
-    public List<CarResponse> findAll() {
-        return service.findAll();
+    public List<CarResponse> findAll(
+            @RequestParam(required = false) String marca
+    ) {
+        return service.findAll(marca);
     }
 
     @GetMapping("/get/{id}")

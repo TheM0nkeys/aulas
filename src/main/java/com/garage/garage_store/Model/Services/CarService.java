@@ -38,9 +38,17 @@ public class CarService {
         return toResponse(savedCar);
     }
 
-    public List<CarResponse> findAll() {
-        return repository.findAll()
-                .stream()
+    public List<CarResponse> findAll(String marca) {
+
+        List<Car> carros;
+
+        if (marca != null && !marca.isBlank()){
+            carros = repository.findByBrand(marca);
+        }else{
+            carros = repository.findAll();
+        }
+
+        return carros.stream()
                 .map(car -> new CarResponse(
                         car.getId(),
                         car.getBrand(),
